@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chulengos - Banda de Rock</title>
+    <style>
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+   .logo {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+
+        .logo-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #ff4757;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+            transition: all 0.3s;
+        }
+
+        .logo-circle:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px rgba(255, 71, 87, 0.8);
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: scale(1.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        .btn-subscribe {
+            background: #e74c3c;
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            border: 2px solid #e74c3c;
+            transition: all 0.3s;
+        }
+
+        .btn-subscribe:hover {
+            background: transparent;
+            color: #e74c3c;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .social-icons a:hover {
+            color: #e74c3c;
+            transform: translateY(-3px);
+        }
+
+    .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s;
+            transform-origin: center;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+      .hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease-out;
+}
+
+.logo-hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-hero-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+}
+
+.logo-hero-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-shadow: 2px 2px 20px rgba(231, 76, 60, 0.5);
+  margin: 0;
+}
+
+.hero .subtitle {
+  font-size: 1.5rem;
+  color: #e74c3c;
+  letter-spacing: 3px;
+  margin-top: 10px;
+}
+
+         .about {
+            padding: 100px 5%;
+            background: url('https://res.cloudinary.com/dliredzt9/image/upload/v1759886472/FireShot_Capture_307_-_Instagram_-_www.instagram.com_oghqxj.png') center/cover no-repeat;
+            position: relative;
+        }
+
+        .about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(30 29 18 / 84%);
+    z-index: 0;
+}
+
+        .about > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(231, 76, 60, 0.3);
+            transition: transform 0.5s;
+        }
+
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+
+        .about-image img {
+            width: 100%;
+            height:auto;
+            object-fit: cover;
+            transition: filter 0.5s;
+        }
+
+        .about-image:hover img {
+            filter: brightness(1.1);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .about-content .quote {
+            font-style: italic;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid #e74c3c;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .videos {
+            padding: 100px 5%;
+            background: #0a0a0a;
+        }
+
+        .videos h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .videos h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .grid-gallery {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .grid-item {
+    position: relative;
+    height: 320px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s;
+    background: #1a1a1a;
+    display: block;
+    text-decoration: none;
+}
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(231, 76, 60, 0.3);
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .grid-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            padding: 2rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+
+        .grid-item:hover .grid-overlay {
+            transform: translateY(0);
+        }
+
+        .grid-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .grid-subtitle {
+            font-size: 0.85rem;
+            color: #e74c3c;
+            letter-spacing: 1px;
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: red;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 2rem;
+        }
+
+        .play-icon::before {
+            content: '▶';
+            margin-left: 5px;
+            color: #ffffff;
+        }
+
+        .grid-item:hover .play-icon {
+            opacity: 1;
+        }
+
+.btn-youtube-container {
+  display: flex;
+  justify-content: center;
+}
+
+ .btn-see-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 3rem auto 0;
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid #e74c3c;
+  color: #fff;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.btn-see-all::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #e74c3c;
+  transition: left 0.4s;
+  z-index: -1;
+}
+
+.btn-see-all:hover::before {
+  left: 0;
+}
+
+.btn-see-all svg {
+  fill: #e74c3c;
+  transition: transform 0.3s;
+  width: 20px;
+  height: 20px;
+}
+
+.btn-see-all:hover {
+  background: #e74c3c;
+  color: #fff;
+}
+
+.btn-see-all:hover svg {
+  fill: #fff;
+  transform: scale(1.1);
+}
+
+        .news {
+            padding: 100px 5%;
+            background: #0f0f0f;
+        }
+
+        .news h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .news h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .news-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .news-item {
+            background: #1a1a1a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .news-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #e74c3c;
+        }
+
+        .news-content p {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .whatsapp-cta {
+            padding: 120px 5%;
+            background: url('https://res.cloudinary.com/dliredzt9/image/upload/v1759885366/call-action-fondo_ampzcv.png') center/cover;
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content > p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+			padding: 0 4rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3.5rem;
+            background: #ff4757;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 60px;
+            transition: all 0.4s;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+        }
+
+        .whatsapp-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-note {
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+
+        footer {
+            background: #000;
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        footer .social-icons {
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: 0.3s;
+            }
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            .hero h1 { font-size: 3rem; }
+            .about-container { grid-template-columns: 1fr; }
+            .about-image { height: 300px; }
+            .grid-gallery { grid-template-columns: 1fr; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+		  <div class="logo">
+      <div class="logo-circle">
+        <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1760023077/logo_spz9vi.jpg" alt="Santo Inferno Logo">
+      </div>
+    </div>
+           
+            <ul class="nav-links">
+               <li><a href="#home">INICIO</a></li>
+<li><a href="#about">SOBRE NOSOTROS</a></li>
+<li><a href="#videos">VIDEOS</a></li>
+<li><a href="#news">NOTICIAS</a></li>
+<li><a href="#contact">CONTACTO</a></li>
+<li><a href="#news">SUSCRÍBETE</a></li>
+
+            </ul>
+            <div class="social-icons">
+                <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+                <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
+           <a href="https://soundcloud.com/" target="_blank" aria-label="SoundCloud">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+      <path d="M17.6 9.4c-.2 0-.5 0-.7.1A5.6 5.6 0 0 0 6 10.6c-.4 0-.7.3-.7.7v3.1c0 .4.3.7.7.7h11.6c1.9 0 3.4-1.5 3.4-3.4s-1.5-3.3-3.4-3.3zM5 10.7c-.2 0-.3.2-.3.4v3.6c0 .2.1.4.3.4s.3-.2.3-.4v-3.6c0-.2-.1-.4-.3-.4zm-1.3.8c-.2 0-.3.2-.3.4v2.2c0 .2.1.4.3.4s.3-.2.3-.4v-2.2c0-.2-.1-.4-.3-.4zm2.6-.4c-.2 0-.3.2-.3.4v3c0 .2.1.4.3.4s.3-.2.3-.4v-3c0-.2-.1-.4-.3-.4zm2.6-.8c-.2 0-.3.2-.3.4v3.8c0 .2.1.4.3.4s.3-.2.3-.4v-3.8c0-.2-.1-.4-.3-.4z"/>
+    </svg>
+  </a>
+		  </div>
+            <div class="menu-toggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+  <section class="hero" id="home">
+  <video class="hero-video" autoplay muted loop playsinline poster="https://res.cloudinary.com/dliredzt9/image/upload/v1759885366/call-action-fondo_ampzcv.png">
+    <source src="https://res.cloudinary.com/dliredzt9/video/upload/v1759888202/hero-video_t2puwp.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="logo-hero-container">
+      <div class="logo-hero-circle">
+        <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1760023077/logo_spz9vi.jpg" alt="Santo Inferno Logo">
+      </div>
+      <h1>CHULENGOS</h1>
+      <p class="subtitle">ROCK BAND</p>
+    </div>
+    <div class="scroll-indicator">↓</div>
+  </div>
+</section>
+
+
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1759890788/nosotros_oeq84c.png" alt="Chulengos">
+            </div>
+            <div class="about-content">
+                <h2> SOBRE CHULENGOS</h2>
+                <p class="quote">Chulengos es una banda de rock nacida en la provincia de Buenos Aires. Con un sonido eléctrico, potente y directo, la banda contagia una energía explosiva en cada show.
+
+Su propuesta combina fuerza, actitud y pasión, creando un ambiente donde el público no solo escucha… vive cada canción.
+
+Chulengos no es solo música: es una experiencia que sacude el cuerpo y prende fuego al escenario..</p>
+            </div>
+        </div>
+    </section>
+
+  <section class="videos" id="videos">
+    <h2>Nuestros Videos</h2>
+    <div class="grid-gallery">
+        <!-- AQUÍ ENVUELVES CADA grid-item CON UN <a> -->
+        
+        <a href="https://youtu.be/aOVkJTPvk9w?si=1U5U7FAdOVSRS8MG" target="_blank" class="grid-item">
+            <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1760022323/FireShot_Capture_314_-_Chulengos_-_Terror_Chulengo_ovwryr.webp" alt="Concert">
+            <div class="play-icon"></div>
+            <div class="grid-overlay">
+                <div class="grid-title">Live at Rock Festival</div>
+                <div class="grid-subtitle">CHULENGOS</div>
+            </div>
+        </a>
+        
+        <a href="https://youtu.be/p47x7aEaoGM?si=RbFQ_xRYDxQnTV_e" target="_blank" class="grid-item">
+            <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1760021928/video3_tret3o.webp" alt="Studio">
+            <div class="play-icon"></div>
+            <div class="grid-overlay">
+                <div class="grid-title">Studio Session</div>
+                <div class="grid-subtitle">BEHIND THE SCENES</div>
+            </div>
+        </a>
+		
+		 <a href="https://youtu.be/RVJN8qTjNpo?si=f0adgqhFS_PLCpeA" target="_blank" class="grid-item">
+            <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1760021124/video5_euwjis.webp" alt="Studio">
+            <div class="play-icon"></div>
+            <div class="grid-overlay">
+                <div class="grid-title">Studio Session</div>
+                <div class="grid-subtitle">BEHIND THE SCENES</div>
+            </div>
+        </a>
+		 <a href="https://youtu.be/q7BauNkQk1U?si=JoysGGcO4A_wQBVo" target="_blank" class="grid-item">
+            <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1759954873/video4_gxtfhk.webp
+			" alt="Studio">
+            <div class="play-icon"></div>
+            <div class="grid-overlay">
+                <div class="grid-title">Studio Session</div>
+                <div class="grid-subtitle">BEHIND THE SCENES</div>
+            </div>
+        </a>
+		 <a href="https://youtu.be/T4GvqH6Ld20?si=ExLfHOuXGx7ROBfJ" target="_blank" class="grid-item">
+            <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1759953777/FireShot_Capture_314_-_Chulengos_-_Terror_Chulengo_MURAL_SESSION_Romaphonic_-_YouTube__-_www.youtube.com_gnsuok.webp" alt="Studio">
+            <div class="play-icon"></div>
+            <div class="grid-overlay">
+                <div class="grid-title">Studio Session</div>
+                <div class="grid-subtitle">BEHIND THE SCENES</div>
+            </div>
+        </a>
+		 <a href="https://youtu.be/dFr5oFyEZOo?si=rBmz_Zvh7l2N6Kr4" target="_blank" class="grid-item">
+            <img src="https://res.cloudinary.com/dliredzt9/image/upload/v1759953413/video6_dpielr.webp" alt="Studio">
+            <div class="play-icon"></div>
+            <div class="grid-overlay">
+                <div class="grid-title">Studio Session</div>
+                <div class="grid-subtitle">BEHIND THE SCENES</div>
+            </div>
+        </a>
+
+  <button class="btn-see-all btn-youtube-container">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+    </svg>
+    Síguenos en YouTube ›
+  </button>
+
+     
+  
+</section>
+
+
+<section class="musica" id="musica">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 100px 5%;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; letter-spacing: 2px;">ESCUCHA NUESTRA MÚSICA</h2>
+            <div style="display: flex; justify-content: center; align-items: center;">
+               <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/artist/0yQnTg2ffha0IqbTWTvwsd?utm_source=generator&theme=0" width="100%" height="700" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="news">
+        <h2>Latest News</h2>
+        <div class="news-grid">
+            <div class="news-item">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <h3>CONCERT TOUR INCOMING</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer mattis ligula sed justo tincidunt consequat.</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <h3>NEW ALBUM RELEASE</h3>
+                    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div>
+            </div>
+            <div class="news-item">
+                <div class="news-image"></div>
+                <div class="news-content">
+                    <h3>MANAGUA LIVE CONCERT</h3>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+   
+    
+    </section>
+	
+	 <section class="whatsapp-cta">
+        <div class="cta-overlay"></div>
+        <div class="cta-container">
+            <div class="cta-content">
+                <h2>No te pierdas ningún show</h2>
+                <p>Únete a nuestro canal de WhatsApp y sé el primero en conocer todas las fechas, lanzamientos y contenido exclusivo de Chulengos</p>
+                <a href="https://whatsapp.com/channel/0029VaFmMmK3WaExampleChannel" class="whatsapp-btn">
+                    <span>Seguir Canal de WhatsApp</span>
+					   <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                </a>
+                <p class="cta-note">✓ Fechas exclusivas • ✓ Preventa de entradas • ✓ Contenido detrás de cámaras</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="social-icons">
+            <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg></a>
+        </div>
+        <p>© 2006-2025 - Chulengos Music. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
