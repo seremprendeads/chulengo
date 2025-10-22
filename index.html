@@ -1187,36 +1187,36 @@ Chulengos no es solo música: es una experiencia que sacude el cuerpo y prende f
                 </div>
             </div>
             
-            <div class="contact-form">
-                <form action="#" method="POST">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Nombre Completo</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" id="phone" name="phone" required>
-                        <label for="phone">Teléfono</label>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                        <label for="message">Mensaje</label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <span>Enviar Mensaje</span>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-                        </svg>
-                    </button>
-                </form>
-            </div>
+        <div class="contact-form">
+    <form id="contactForm">
+        <div class="form-group">
+            <input type="text" id="name" name="name" required>
+            <label for="name">Nombre Completo</label>
+        </div>
+        
+        <div class="form-group">
+            <input type="email" id="email" name="email" required>
+            <label for="email">Email</label>
+        </div>
+        
+        <div class="form-group">
+            <input type="tel" id="phone" name="phone" required>
+            <label for="phone">Teléfono</label>
+        </div>
+        
+        <div class="form-group">
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <label for="message">Mensaje</label>
+        </div>
+        
+        <button type="submit" class="submit-btn">
+            <span>Enviar por WhatsApp</span>
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
+        </button>
+    </form>
+</div>
         </div>
     </div>
 </section>
@@ -1239,13 +1239,15 @@ Chulengos no es solo música: es una experiencia que sacude el cuerpo y prende f
 
     <script>
 		
-
+//feedback Marker.io
   window.markerConfig = {
     project: '68f8ea678991532c10ff0409', 
     source: 'snippet'
   };
 
   !function(e,r,a){if(!e.__Marker){e.__Marker={};var t=[],n={__cs:t};["show","hide","isVisible","capture","cancelCapture","unload","reload","isExtensionInstalled","setReporter","clearReporter","setCustomData","on","off"].forEach(function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);r.unshift(e),t.push(r)}}),e.Marker=n;var s=r.createElement("script");s.async=1,s.src="https://edge.marker.io/latest/shim.js";var i=r.getElementsByTagName("script")[0];i.parentNode.insertBefore(s,i)}}(window,document);
+
+
 
 
         const menuToggle = document.querySelector('.menu-toggle');
@@ -1272,9 +1274,36 @@ Chulengos no es solo música: es una experiencia que sacude el cuerpo y prende f
                 }
             });
         });
+
+		// Formulario contacto a Whatsapp
+		document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Obtener los valores del formulario
+    const nombre = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const telefono = document.getElementById('phone').value;
+    const mensaje = document.getElementById('message').value;
+    
+    // Crear el mensaje para WhatsApp
+    const textoWhatsApp = `Hola! Me contacto desde tu sitio web:\n\n*Nombre:* ${nombre}\n*Email:* ${email}\n*Teléfono:* ${telefono}\n*Mensaje:* ${mensaje}`;
+    
+    // Tu número de WhatsApp (reemplaza con tu número, incluyendo código de país sin +)
+    const numeroWhatsApp = '5491159554443'; // Ejemplo: 549 (Argentina) + código de área + número
+    
+    // Codificar el mensaje para URL
+    const mensajeCodificado = encodeURIComponent(textoWhatsApp);
+    
+    // Crear el enlace de WhatsApp
+    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
+    
+    // Abrir WhatsApp en una nueva ventana
+    window.open(urlWhatsApp, '_blank');
+});
     </script>
 </body>
 </html>
+
 
 
 
